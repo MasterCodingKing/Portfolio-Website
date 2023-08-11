@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="projectsStyle.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="scoreColor">
+        <div id="titleScore">Scoring Board</div>
+        <div class="ScoreCon">
+            <div class="team A">
+                <h2>Home</h2>
+                <h3 class="teamAScoreA">0</h3>
+
+                <button class="scores" data-value='1'>1</button>
+                <button class="scores" data-value="2">2</button>
+                <button class="scores" data-value="3">3</button>
+
+                <button id="minus">-1</button>
+            </div>
+            <div class="team B">
+                <h2>Guest</h2>
+                <h3 class="teamAScoreB">0</h3>
+                <button class="scoresB" data-value='1'>1</button>
+                <button class="scoresB" data-value="2">2</button>
+                <button class="scoresB" data-value="3">3</button>
+
+                <button id="teamB">-1</button>
+            </div>
+        </div>
+        <button id="reset">New Game</button>
+        
+    </div>
+
+    <script> 
+        //Team A -----------------------------
+        let board = document.getElementsByClassName('scoreColor')
+       let buttons = document.querySelectorAll('.scores');
+       let displyScore = document.querySelector('.teamAScoreA');
+       let num  = 0
+       let test = Array.from(buttons);
+        test.forEach(btn =>{
+        btn.addEventListener('click', ()=>{
+            let value = parseInt(btn.getAttribute('data-value'))
+            num += value
+            console.log(num)
+            displyScore.textContent = num
+        })
+       })
+       let scoreDecA = document.getElementById('minus');
+       scoreDecA.addEventListener('click', ()=>{
+        let Scorenum = parseInt(displyScore.textContent);
+        Scorenum--;
+        if(Scorenum == -1){
+            return scoreDecA.removeEventListener()
+        }
+        displyScore.textContent = Scorenum
+       })
+     
+      
+       //Team B -----------------------------
+
+       let buttonB = document.querySelectorAll('.scoresB');
+       let dplyScoreTeamB = document.querySelector('.teamAScoreB');
+       let teamBScore = 0
+       for(let btnB of buttonB){
+        btnB.addEventListener('click', () =>{
+            let ValueTB = parseInt(btnB.getAttribute('data-value'));
+            teamBScore += ValueTB
+            console.log(teamBScore)
+            dplyScoreTeamB.textContent = teamBScore
+        })
+       }
+       
+     let backB = document.getElementById('teamB');
+     backB.addEventListener('click', ()=>{
+        let getScore = parseInt(dplyScoreTeamB.textContent);
+        getScore--;
+        console.log(getScore);
+        if(getScore == -1){
+            return removeEventListener()
+        }
+        dplyScoreTeamB.textContent = getScore
+     })
+     let newGame = document.getElementById('reset');
+    newGame.addEventListener('click', () =>{
+        displyScore.textContent = 0
+        dplyScoreTeamB.textContent = 0
+})
+//r
+    </script>
+</body>
+</html>

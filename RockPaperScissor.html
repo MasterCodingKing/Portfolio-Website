@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="projectsStyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="conRock">
+            <h3>Winner: <br><span id="Winner"></span></h3>
+            <p>Computer: <span id="computer"></span></p>
+            <p >Player: <span id="player"></span></p>
+            <button type="button" class="bets" value="rock">Rock</button>
+            <button type="button" class="bets" value="scissor">Scissor</button>
+            <button type="button" class="bets" value="paper">Paper</button>
+        </div>
+    </div>
+    <script>
+        let buttons = document.querySelectorAll('.bets');
+        let result = document.querySelector('#Winner');
+        let computer = document.querySelector('#computer');
+        let player = document.querySelector('#player');
+
+        let TextPlayer = '';
+        let ComputerText = 'Paper';
+        let ValueResult = ''
+        
+        buttons.forEach(button => button.addEventListener('click', ()=>{
+            TextPlayer = button.textContent;
+            player.textContent = TextPlayer;
+            computer.textContent = ComputerText;
+            computerTurns();
+            result.textContent = win()
+        }))
+        function computerTurns(){
+            let bato = Math.floor(Math.random() * 3) + 1;
+            console.log(bato)
+            if(bato == 1){
+                ComputerText = 'Rock';
+            }else if(bato == 2){
+                ComputerText = 'Scissor'
+            }else if(bato == 3){
+                ComputerText = 'Paper'
+            }
+            return ComputerText
+        }
+        function win(){
+            if(TextPlayer === ComputerText){
+                return  'Draw';
+            }else if(ComputerText === 'Paper'){
+                return (TextPlayer === 'Rock') ? 'You Win' : 'You Lose'
+            }else if(ComputerText === 'Rock'){
+                return (TextPlayer === 'Scissor') ? 'You Win' : 'You Lose'
+            }else if(ComputerText === 'Scissor'){
+                return (TextPlayer === 'Paper') ? 'You Win' : 'You Lose'
+            }
+        }
+    
+
+//09098436205 number ni dalogdog
+    </script>
+</body>
+</html>
